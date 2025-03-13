@@ -10,6 +10,7 @@ type Game struct {
 }
 
 func (game *Game) Update() error {
+	game.player.Update()
 	return nil
 }
 
@@ -24,6 +25,9 @@ func (game *Game) Layout(outsideWidth, outsideHeight int) (ScreenWidth, ScreenHe
 func main() {
 	game := &Game{}
 	game.player = newPlayer(game)
+
+	ebiten.SetWindowTitle("Go Asteroids")
+	ebiten.SetWindowSize(ScreenWidth, ScreenHeight)
 
 	err := ebiten.RunGame(game)
 	if err != nil {
